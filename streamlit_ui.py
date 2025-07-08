@@ -3,9 +3,9 @@ import pandas as pd
 import base64
 from datetime import datetime
 import os
-import csv
+import csv as csv_module
 
-CSV_QUOTING = csv.QUOTE_ALL
+CSV_QUOTING = csv_module.QUOTE_ALL
 
 # Set page configuration
 st.set_page_config(
@@ -18,6 +18,9 @@ st.set_page_config(
 @st.cache_data
 def load_data(file_path="./data/hpo_diverse_sentences_0-50.csv"):
     try:
+        if not os.path.exists(file_path):
+            st.error(f"File not found: {file_path}")
+            return None
         return pd.read_csv(file_path, quoting=CSV_QUOTING)
     except Exception as e:
         st.error(f"Error loading file: {e}")
@@ -38,8 +41,6 @@ def main():
 
     # Sidebar for configuration
     st.sidebar.header("Configuration")
-
-    # Annotator name input
     annotator_name = st.sidebar.text_input("Enter your name:", key="annotator_name")
 
     # Initialize session state
@@ -58,7 +59,6 @@ def main():
         if data is not None:
             st.session_state.data = data
 
-            # Initialize annotations dataframe with the same structure as input plus annotation column
             st.session_state.annotations = pd.DataFrame({
                 'annotator': [annotator_name] * len(data),
                 'hpo_label': data['hpo_label'].tolist(),
@@ -74,130 +74,59 @@ def main():
     # Main annotation interface
     if st.session_state.data is not None and annotator_name:
         data = st.session_state.data
+        annotations = st.session_state.annotations
+        idx = st.session_state.current_index
+        current_row = data.iloc[idx]
 
-        # Display progress
-        st.progress((st.session_state.current_index) / len(data))
-        st.write(f"Annotating {st.session_state.current_index + 1} of {len(data)}")
+        st.progress(idx / len(data))
+        st.write(f"Annotating {idx + 1} of {len(data)}")
 
-        # Display current sentence
-        current_row = data.iloc[st.session_state.current_index]
-
-        # Display HPO information
-        # col1, col2 = st.columns(2)
-        # with col1:
-        #     st.subheader("HPO Term")
-        #     st.write(f"**Label:** {current_row['hpo_label']}")
-        #     st.write(f"**ID:** {current_row['hpo_id']}")
+        # Display HPO term
         st.subheader("HPO Term")
-        st.markdown(f"<span style='font-size: 16px;'><b>{current_row['hpo_label']}</b> ({current_row['hpo_id']})</span>",
-            unsafe_allow_html=True)
+        st.markdown(f"<span style='font-size: 16px;'><b>{current_row['hpo_label']}</b> ({current_row['hpo_id']})</span>", unsafe_allow_html=True)
 
-        # Display sentence and span
         st.subheader("Sentence")
         st.write(current_row['sentence'])
-        #
-        # st.subheader("Highlighted Span")
-        # st.info(current_row['span'])
 
-        # Annotation options
-        st.subheader("Annotation")
+        # st.subheader("Annotation")
+        st.write("Is this sentence relevant with the HPO term?")
 
-        # Is the span correct?
-        current_value = st.session_state.annotations.iloc[st.session_state.current_index]['is_correct']
-        default_index = 0
-        if current_value == 1:
-            default_index = 0
-        elif current_value == 0:
-            default_index = 1
-
-        # is_correct = st.radio(
-        #     "Is this sentence relevant with the HPO term?",
-        #     ["Yes (1)", "No (0)"],
-        #     index=default_index
-        # )
-
-        # Convert radio button selection to binary value
-        # is_correct_value = 1 if is_correct == "Yes (1)" else 0
-
-        
-        # # Navigation buttons
-        # col1, col2, col3 = st.columns(3)
-
-        # with col1:
-        #     if st.button("Previous", disabled=(st.session_state.current_index == 0)):
-        #         # Save current annotation
-        #         st.session_state.annotations.loc[st.session_state.current_index, 'is_correct'] = is_correct_value
-        #         st.session_state.annotations.loc[st.session_state.current_index, 'timestamp'] = datetime.now().strftime(
-        #             "%Y-%m-%d %H:%M:%S")
-        #         st.session_state.annotations.loc[st.session_state.current_index, 'annotator'] = annotator_name
-
-        #         # Go to previous sample
-        #         st.session_state.current_index -= 1
-        #         st.rerun()
-
-        # with col2:
-        #     if st.button("Next", disabled=(st.session_state.current_index == len(data) - 1)):
-        #         # Save current annotation
-        #         st.session_state.annotations.loc[st.session_state.current_index, 'is_correct'] = is_correct_value
-        #         st.session_state.annotations.loc[st.session_state.current_index, 'timestamp'] = datetime.now().strftime(
-        #             "%Y-%m-%d %H:%M:%S")
-        #         st.session_state.annotations.loc[st.session_state.current_index, 'annotator'] = annotator_name
-
-        #         # Go to next sample
-        #         st.session_state.current_index += 1
-        #         st.rerun()
-
-        # Annotation buttons
-        st.subheader("Is this sentence relevant with the HPO term?")
-        col_yes, col_no, col_prev = st.columns([1, 1, 1])
-        
+        col_yes, col_no = st.columns([1, 1])
         with col_yes:
             if st.button("✅ Yes", key="yes_button"):
-                st.session_state.annotations.loc[st.session_state.current_index, 'is_correct'] = 1
-                st.session_state.annotations.loc[st.session_state.current_index, 'timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                st.session_state.annotations.loc[st.session_state.current_index, 'annotator'] = annotator_name
-                if st.session_state.current_index < len(st.session_state.data) - 1:
+                annotations.loc[idx, 'is_correct'] = 1
+                annotations.loc[idx, 'timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                annotations.loc[idx, 'annotator'] = annotator_name
+                if idx < len(data) - 1:
                     st.session_state.current_index += 1
                 st.rerun()
-        
+
         with col_no:
             if st.button("❌ No", key="no_button"):
-                st.session_state.annotations.loc[st.session_state.current_index, 'is_correct'] = 0
-                st.session_state.annotations.loc[st.session_state.current_index, 'timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                st.session_state.annotations.loc[st.session_state.current_index, 'annotator'] = annotator_name
-                if st.session_state.current_index < len(st.session_state.data) - 1:
+                annotations.loc[idx, 'is_correct'] = 0
+                annotations.loc[idx, 'timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                annotations.loc[idx, 'annotator'] = annotator_name
+                if idx < len(data) - 1:
                     st.session_state.current_index += 1
                 st.rerun()
-        
-        with col_prev:
-            if st.button("⬅️ Previous", key="prev_button"):
-                # No change to current annotation
-                if st.session_state.current_index > 0:
-                    st.session_state.current_index -= 1
-                st.rerun()
 
+        # Previous button below
+        if st.button("⬅️ Previous", key="prev_button"):
+            if idx > 0:
+                st.session_state.current_index -= 1
+            st.rerun()
 
-        with col3:
-            if st.button("Save Annotations"):
-                # Save current annotation
-                st.session_state.annotations.loc[st.session_state.current_index, 'is_correct'] = is_correct_value
-                st.session_state.annotations.loc[st.session_state.current_index, 'timestamp'] = datetime.now().strftime(
-                    "%Y-%m-%d %H:%M:%S")
-                st.session_state.annotations.loc[st.session_state.current_index, 'annotator'] = annotator_name
+        if st.button("Save Annotations"):
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            filename = f"hpo_annotations_{annotator_name}_{timestamp}.csv"
+            st.markdown(get_csv_download_link(annotations, filename), unsafe_allow_html=True)
+            st.success("Annotations ready for download!")
 
-                # Generate download link
-                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                filename = f"hpo_annotations_{annotator_name}_{timestamp}.csv"
-                st.markdown(get_csv_download_link(st.session_state.annotations, filename), unsafe_allow_html=True)
-                st.success("Annotations ready for download!")
-
-        # Display annotation progress
-        completed = st.session_state.annotations['is_correct'].notnull().sum()
+        completed = annotations['is_correct'].notnull().sum()
         st.write(f"Completed: {completed}/{len(data)} annotations")
 
-        # Display annotations table
         if st.checkbox("Show all annotations"):
-            st.dataframe(st.session_state.annotations)
+            st.dataframe(annotations)
 
     else:
         if not annotator_name:

@@ -110,14 +110,36 @@ def main():
         elif current_value == 0:
             default_index = 1
 
-        is_correct = st.radio(
-            "Is this sentence relevant with the HPO term?",
-            ["Yes (1)", "No (0)"],
-            index=default_index
-        )
+        # is_correct = st.radio(
+        #     "Is this sentence relevant with the HPO term?",
+        #     ["Yes (1)", "No (0)"],
+        #     index=default_index
+        # )
 
         # Convert radio button selection to binary value
-        is_correct_value = 1 if is_correct == "Yes (1)" else 0
+        # is_correct_value = 1 if is_correct == "Yes (1)" else 0
+
+        st.subheader("Is this sentence relevant with the HPO term?")
+        col_yes, col_no = st.columns(2)
+        
+        with col_yes:
+            if st.button("✅ Yes", key="yes_button"):
+                st.session_state.annotations.loc[st.session_state.current_index, 'is_correct'] = 1
+                st.session_state.annotations.loc[st.session_state.current_index, 'timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                st.session_state.annotations.loc[st.session_state.current_index, 'annotator'] = annotator_name
+                if st.session_state.current_index < len(st.session_state.data) - 1:
+                    st.session_state.current_index += 1
+                st.rerun()
+        
+        with col_no:
+            if st.button("❌ No", key="no_button"):
+                st.session_state.annotations.loc[st.session_state.current_index, 'is_correct'] = 0
+                st.session_state.annotations.loc[st.session_state.current_index, 'timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                st.session_state.annotations.loc[st.session_state.current_index, 'annotator'] = annotator_name
+                if st.session_state.current_index < len(st.session_state.data) - 1:
+                    st.session_state.current_index += 1
+                st.rerun()
+
 
         # Navigation buttons
         col1, col2, col3 = st.columns(3)

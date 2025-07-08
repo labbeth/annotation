@@ -91,7 +91,7 @@ def main():
         # st.subheader("Annotation")
         st.subheader("Is this sentence relevant with the HPO term?")
 
-        col_yes, col_no = st.columns([1, 1])
+        col_yes, spacer, col_no = st.columns([1, 0.1, 1])
         with col_yes:
             if st.button("✅ Yes", key="yes_button"):
                 annotations.loc[idx, 'is_correct'] = 1

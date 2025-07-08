@@ -89,7 +89,7 @@ def main():
         st.write(current_row['sentence'])
 
         # st.subheader("Annotation")
-        st.subheader("Is this sentence relevant with the HPO term?")
+        st.subheader("Is this sentence properly written and relevant to the HPO term?")
 
         # col_yes, spacer, col_no = st.columns([1, 0.1, 1])
         # with col_yes:

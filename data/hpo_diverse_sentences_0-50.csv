@@ -1,1 +1,51 @@
-
+hpo_label,hpo_id,sentence,span
+Collagenoma,HP:6000022,She presented with multiple skin nodules that were consistent with the characteristics of a collagenoma.,characteristics of a collagenoma
+Localized pulmonary hemorrhage,HP:0032990,A contrast-enhanced CT revealed a circumscribed area of bleeding in the left lung; this finding aligns with what is known as localized pulmonary haemorrhage.,localized pulmonary haemorrhage
+Dandy-Walker malformation,HP:0001305,"The MRI results revealed dilation of the fourth ventricle alongside an enlarged posterior fossa, characteristic of a Dandy-Walker cyst.",Dandy-Walker cyst
+Refractory anemia with ringed sideroblasts,HP:0004828,"Mr. Thompson presented with persistent fatigue and pallor, leading to a complete blood count that showed low hemoglobin levels.",persistent fatigue and pallor
+Endometriosis,HP:0030127,"A laparoscopy was performed, revealing ectopic endometrial tissue on the ovaries and peritoneum.",endometrial tissue
+Vestibular nystagmus,HP:0010542,"In my assessment, I observed that he struggled to maintain focus on stationary objects due to his uncontrollable eye movement patterns.",uncontrollable eye movement patterns
+Laterally curved eyebrow,HP:0007733,"I observed that the individual exhibited a laterally curved eyebrow, which was noted during the physical examination.",laterally curved eyebrow
+Small cell lung carcinoma,HP:0030357,She reported experiencing persistent cough and unexplained weight loss over several weeks; these symptoms are often associated with small cell lung cancer.,small cell lung cancer
+Thymic cyst,HP:0034966,I noticed during our discussion about her recent chest X-ray results that she seemed relieved to learn there were no concerning findings apart from the small thymic cyst detected.,thymic cyst
+Corneal scarring,HP:0000559,"I noted that the patient had a history of trauma to the left eye, which correlates with the observed scarring.",scarring
+Morbus Koehler,HP:0010888,Pain levels were measured at 7/10 during ambulation and 4/10 at rest during assessment today—common complaints associated with juvenile aseptic necrosis.,juvenile aseptic necrosis
+Low posterior hairline,HP:0002162,Observations made during routine check-ups have shown consistent traits related to this specific phenotype across multiple visits.,this specific phenotype
+Fractured lateral malleolus of fibula,HP:0041210,"Upon examination, bruising was noted around the area where the fibula's lateral malleolus is located.",lateral malleolus
+Vocal cord paresis,HP:0001604,"The examination revealed a significant decrease in the strength of his vocal folds, consistent with vocal cord paresis.",vocal cord paresis
+Multiple digital exostoses,HP:0005655,X-rays showed a significant number of abnormal bone formations in both digits and metatarsals.,abnormal bone formations in both digits
+Decreased specific antibody response to protein-conjugated polysaccharide vaccine,HP:0410302,"We reviewed his test results together, which indicated an insufficient synthesis of antibodies post-vaccination against the targeted pathogens.",insufficient synthesis of antibodies post-vaccination
+Autoimmune thrombocytopenia,HP:0001973,"During the examination, it was noted that antiplatelet antibodies were detected in John’s blood sample.",antiplatelet antibodies
+Insulinoma,HP:0012197,It was observed that episodes of hypoglycemia were more frequent when they engaged in strenuous exercise without adequate carbohydrate intake.,hypoglycemia
+Amyloidosis of peripheral nerves,HP:0100292,"I observed that she had difficulty feeling temperature changes in her feet, a common symptom associated with amyloidosis of peripheral nerves.",amyloidosis of peripheral nerves
+Retinal arterial macroaneurysms,HP:0025355,"Retinal arterial macroaneurysms were noted during the fundoscopic examination of Mrs. Johnson, revealing significant focal dilatations in her temporal retina.",Retinal arterial macroaneurysms
+Vaginal fistula,HP:0004320,"A history of childbirth trauma was provided by her, which is often linked to such conditions as a vaginal fistula.",a vaginal fistula
+Frontal hirsutism,HP:0011335,"I observed that Mr. Thompson exhibited significant hair growth on his forehead, which could be classified as frontal hirsutism.",frontal hirsutism
+Gingival bleeding,HP:0000225,"They mentioned experiencing persistent gum bleeding for the past week, especially after dental hygiene routines.",gum bleeding
+Rectoperineal fistula,HP:0004792,They described experiencing recurrent infections in their lower genital area without any prior history of surgery or trauma.,lower genital area
+Intermittent episodes of respiratory insufficiency due to muscle weakness,HP:0004889,He displayed significant muscle weakness that led to shortness of breath during routine activities.,muscle weakness that led to shortness of breath
+Cutaneous mastocytosis,HP:0200151,It is interesting to note how certain triggers can lead to localized swelling at sites where lesions are present; such reactions were evident during our assessment today.,localized swelling at sites where lesions are present
+Aplasia/Hypoplasia of the 3rd metacarpal,HP:0010039,"In my observation, there was a noticeable asymmetry in her hands; one side had a markedly reduced length for the 3rd metacarpal.",markedly reduced length for the 3rd metacarpal
+Precocious puberty with Sertoli cell tumor,HP:0008204,Mrs. Thompson's daughter has already begun menstruating at just 8 years old; this is atypical for girls her age and raises concerns about underlying pathology.,begun menstruating at just 8 years old
+Optic disc coloboma,HP:0000588,"The imaging results showed a cleft in the optic nerve, confirming the presence of an optic disc coloboma.",optic disc coloboma
+Lipoma,HP:0012032,"Lipomas can often be mistaken for other types of masses; however, their characteristic softness is usually evident during assessment.",Lipomas
+Multiple joint contractures,HP:0002828,"Upon physical assessment, it was found that Mr. Johnson had flexion deformities at multiple joints.",flexion deformities at multiple joints
+Horner syndrome,HP:0002277,The patient exhibited noticeable differences between pupils: one constricted and one dilated under similar lighting conditions; this discrepancy raised suspicion for an underlying issue like Horner syndrome.,Horner syndrome
+Long-tract sign,HP:0002423,"Upon testing for deep tendon reflexes, it became evident that there were significant abnormalities present in both arms and legs.",significant abnormalities
+Episodic ketoacidosis,HP:0005974,The frequency of the patient's ketoacidosis was alarming; she had three distinct occurrences within a month.,ketoacidosis
+Fractured phalanx,HP:0041083,An X-ray showed a complete breakage of one bone in her hand; this finding aligns with what is known as a fractured phalanx.,a fractured phalanx
+Abnormal lateral cricoarytenoid muscle morphology,HP:3000067,They reported persistent hoarseness and stridor; these symptoms may correlate with structural issues involving their vocal cord adductors.,structural issues involving their vocal cord adductors
+Severe periodontitis,HP:0000166,"I observed that her oral hygiene routine, while diligent, was not preventing the progression of her gum disease.",gum disease
+Edema of the upper limbs,HP:0010742,They exhibited pitting edema when pressure was applied to their forearms; this finding aligns with common presentations of fluid accumulation in upper limbs.,pitting edema
+Urinary incontinence,HP:0000020,"The bladder diary indicated that they experienced leakage on 5 out of 7 days, often after consuming caffeinated beverages.",leakage
+Fragmentation of the epiphysis of the 1st metacarpal,HP:0010019,They exhibited limited range of motion in their thumb due to discomfort associated with fragmented bony structures nearby.,fragmented bony structures
+Monoclonal immunoglobulin M proteinemia,HP:0005508,"Elevated levels of IgM were detected during routine laboratory analysis, confirming monoclonal immunoglobulin M proteinemia.",monoclonal immunoglobulin M proteinemia
+Foot joint contracture,HP:0008366,We measured limited dorsiflexion at both ankles; results indicated less than 5 degrees on each side.,limited dorsiflexion
+Insulin-resistant diabetes mellitus,HP:0000831,"During the examination, we found that Mr. Thompson had elevated fasting insulin levels, measuring 25 µU/mL.",elevated fasting insulin levels
+Vaginal pruritus,HP:0030161,"After discussing her symptoms further, it became clear that this issue had affected her daily activities and emotional well-being significantly.",this issue
+Cardiac amyloidosis,HP:0030843,"During the echocardiogram, thickening of the ventricular walls was noted, raising concerns about amyloid cardiomyopathy.",amyloid cardiomyopathy
+Postcoital vaginal bleeding,HP:0034264,"During the examination, postcoital vaginal bleeding was observed; a small amount of blood was noted on the speculum.",postcoital vaginal bleeding
+Cutaneous T-cell lymphoma,HP:0012192,The presence of erythematous plaques was documented during follow-up visits; these features are often seen in this type of malignancy.,this type of malignancy
+Dentinogenesis imperfecta limited to primary teeth,HP:0011060,"I observed that the child presented with discolored primary teeth, a hallmark of dentinogenesis imperfecta limited to primary teeth.",dentinogenesis imperfecta limited to primary teeth
+Cerebellar glioma,HP:0010795,Symptoms of dizziness were frequently mentioned by patients presenting with similar conditions affecting their coordination and stability.,conditions affecting their coordination and stability
+Absent muscle fiber beta sarcoglycan,HP:0030106,"The report indicated that all tested fibers lacked detectable levels of beta sarcoglycan protein, aligning with findings typical for absent muscle fibre beta sarcoglycan.",absent muscle fibre beta sarcoglycan

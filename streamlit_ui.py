@@ -16,7 +16,7 @@ st.set_page_config(
 @st.cache_data
 def load_data(file_path="./data/hpo_diverse_sentences_0-50.csv"):
     try:
-        return pd.read_csv(file_path)
+        return pd.read_csv(file_path, quoting=csv.QUOTE_ALL)
     except Exception as e:
         st.error(f"Error loading file: {e}")
         return None
@@ -24,7 +24,7 @@ def load_data(file_path="./data/hpo_diverse_sentences_0-50.csv"):
 
 # Function to download dataframe as CSV
 def get_csv_download_link(df, filename="./data/annotations.csv"):
-    csv = df.to_csv(index=False)
+    csv = df.to_csv(index=False, quoting=csv.QUOTE_ALL)
     b64 = base64.b64encode(csv.encode()).decode()
     href = f'<a href="data:file/csv;base64,{b64}" download="{filename}">Download CSV file</a>'
     return href

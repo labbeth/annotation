@@ -119,8 +119,37 @@ def main():
         # Convert radio button selection to binary value
         # is_correct_value = 1 if is_correct == "Yes (1)" else 0
 
+        
+        # # Navigation buttons
+        # col1, col2, col3 = st.columns(3)
+
+        # with col1:
+        #     if st.button("Previous", disabled=(st.session_state.current_index == 0)):
+        #         # Save current annotation
+        #         st.session_state.annotations.loc[st.session_state.current_index, 'is_correct'] = is_correct_value
+        #         st.session_state.annotations.loc[st.session_state.current_index, 'timestamp'] = datetime.now().strftime(
+        #             "%Y-%m-%d %H:%M:%S")
+        #         st.session_state.annotations.loc[st.session_state.current_index, 'annotator'] = annotator_name
+
+        #         # Go to previous sample
+        #         st.session_state.current_index -= 1
+        #         st.rerun()
+
+        # with col2:
+        #     if st.button("Next", disabled=(st.session_state.current_index == len(data) - 1)):
+        #         # Save current annotation
+        #         st.session_state.annotations.loc[st.session_state.current_index, 'is_correct'] = is_correct_value
+        #         st.session_state.annotations.loc[st.session_state.current_index, 'timestamp'] = datetime.now().strftime(
+        #             "%Y-%m-%d %H:%M:%S")
+        #         st.session_state.annotations.loc[st.session_state.current_index, 'annotator'] = annotator_name
+
+        #         # Go to next sample
+        #         st.session_state.current_index += 1
+        #         st.rerun()
+
+        # Annotation buttons
         st.subheader("Is this sentence relevant with the HPO term?")
-        col_yes, col_no = st.columns(2)
+        col_yes, col_no, col_prev = st.columns([1, 1, 1])
         
         with col_yes:
             if st.button("✅ Yes", key="yes_button"):
@@ -139,34 +168,14 @@ def main():
                 if st.session_state.current_index < len(st.session_state.data) - 1:
                     st.session_state.current_index += 1
                 st.rerun()
-
-
-        # Navigation buttons
-        col1, col2, col3 = st.columns(3)
-
-        with col1:
-            if st.button("Previous", disabled=(st.session_state.current_index == 0)):
-                # Save current annotation
-                st.session_state.annotations.loc[st.session_state.current_index, 'is_correct'] = is_correct_value
-                st.session_state.annotations.loc[st.session_state.current_index, 'timestamp'] = datetime.now().strftime(
-                    "%Y-%m-%d %H:%M:%S")
-                st.session_state.annotations.loc[st.session_state.current_index, 'annotator'] = annotator_name
-
-                # Go to previous sample
-                st.session_state.current_index -= 1
+        
+        with col_prev:
+            if st.button("⬅️ Previous", key="prev_button"):
+                # No change to current annotation
+                if st.session_state.current_index > 0:
+                    st.session_state.current_index -= 1
                 st.rerun()
 
-        with col2:
-            if st.button("Next", disabled=(st.session_state.current_index == len(data) - 1)):
-                # Save current annotation
-                st.session_state.annotations.loc[st.session_state.current_index, 'is_correct'] = is_correct_value
-                st.session_state.annotations.loc[st.session_state.current_index, 'timestamp'] = datetime.now().strftime(
-                    "%Y-%m-%d %H:%M:%S")
-                st.session_state.annotations.loc[st.session_state.current_index, 'annotator'] = annotator_name
-
-                # Go to next sample
-                st.session_state.current_index += 1
-                st.rerun()
 
         with col3:
             if st.button("Save Annotations"):

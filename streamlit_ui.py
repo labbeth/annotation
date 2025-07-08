@@ -12,7 +12,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-
 # Function to load the CSV file
 @st.cache_data
 def load_data(file_path="./data/hpo_diverse_sentences_0-50.csv"):

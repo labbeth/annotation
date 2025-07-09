@@ -109,28 +109,38 @@ def main():
         #         if idx < len(data) - 1:
         #             st.session_state.current_index += 1
         #         st.rerun()
-        col1, col2, _ = st.columns([0.15, 0.15, 0.7])  # narrow Yes and No, large empty space
-
+        col1, col2, col3, _ = st.columns([0.15, 0.15, 0.15, 0.55])
+        idx = st.session_state.current_index
+        annotations = st.session_state.annotations
+        
         with col1:
             if st.button("✅ Yes", key="yes_button"):
-                st.session_state.annotations.loc[idx, 'is_correct'] = 1
-                st.session_state.annotations.loc[idx, 'timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                st.session_state.annotations.loc[idx, 'annotator'] = annotator_name
-                if idx < len(data) - 1:
+                annotations.loc[idx, 'is_correct'] = 1
+                annotations.loc[idx, 'timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                annotations.loc[idx, 'annotator'] = annotator_name
+                if idx < len(st.session_state.data) - 1:
                     st.session_state.current_index += 1
                 st.rerun()
         
         with col2:
-            if st.button("❌ No", key="no_button"):
-                st.session_state.annotations.loc[idx, 'is_correct'] = 0
-                st.session_state.annotations.loc[idx, 'timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-                st.session_state.annotations.loc[idx, 'annotator'] = annotator_name
-                if idx < len(data) - 1:
+            if st.button("🟡 Partially", key="partial_button"):
+                annotations.loc[idx, 'is_correct'] = 0.5
+                annotations.loc[idx, 'timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                annotations.loc[idx, 'annotator'] = annotator_name
+                if idx < len(st.session_state.data) - 1:
                     st.session_state.current_index += 1
                 st.rerun()
-
-
-        # Previous button below
+        
+        with col3:
+            if st.button("❌ No", key="no_button"):
+                annotations.loc[idx, 'is_correct'] = 0
+                annotations.loc[idx, 'timestamp'] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                annotations.loc[idx, 'annotator'] = annotator_name
+                if idx < len(st.session_state.data) - 1:
+                    st.session_state.current_index += 1
+                st.rerun()
+        
+        # ⬅️ Previous button (below)
         if st.button("⬅️ Previous", key="prev_button"):
             if idx > 0:
                 st.session_state.current_index -= 1
